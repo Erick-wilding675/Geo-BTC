@@ -1,0 +1,30 @@
+# ── Core scientific stack ──────────────────────────────────────────────────────
+numpy==1.26.4
+pandas==2.2.2
+scipy==1.13.1
+scikit-learn==1.5.1
+
+# ── Deep learning ──────────────────────────────────────────────────────────────
+tensorflow==2.17.0
+keras==3.4.1
+
+# ── Visualisation ──────────────────────────────────────────────────────────────
+matplotlib==3.9.2
+seaborn==0.13.2
+
+# ── Notebook & tooling ─────────────────────────────────────────────────────────
+jupyter==1.1.1
+jupyterlab==4.2.5
+ipykernel==6.29.5
+
+# ── Configuration / CLI ────────────────────────────────────────────────────────
+pyyaml==6.0.2
+python-dotenv==1.0.1
+
+# ── Live-data fetching (optional, for notebooks/pedictionlive.ipynb) ───────────
+yfinance==0.2.43
+
+# ── Testing & lint ─────────────────────────────────────────────────────────────
+pytest==8.3.3
+pytest-cov==5.0.0
+ruff==0.6.9

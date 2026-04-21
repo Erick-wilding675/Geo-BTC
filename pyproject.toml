@@ -1,0 +1,102 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "geo-btc"
+version = "1.0.0"
+description = "Bitcoin price forecasting using LSTM and residual analysis for geopolitical risk inference"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Erick Cardoso Mendes", email = "cmendeserick@gmail.com" },
+]
+keywords = [
+    "bitcoin",
+    "LSTM",
+    "time-series",
+    "geopolitics",
+    "cryptocurrency",
+    "residual-analysis",
+    "deep-learning",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "numpy==1.26.4",
+    "pandas==2.2.2",
+    "scipy==1.13.1",
+    "scikit-learn==1.5.1",
+    "tensorflow==2.17.0",
+    "keras==3.4.1",
+    "matplotlib==3.9.2",
+    "seaborn==0.13.2",
+    "pyyaml==6.0.2",
+    "python-dotenv==1.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==8.3.3",
+    "pytest-cov==5.0.0",
+    "ruff==0.6.9",
+]
+notebook = [
+    "jupyter==1.1.1",
+    "jupyterlab==4.2.5",
+    "ipykernel==6.29.5",
+    "yfinance==0.2.43",
+]
+
+[project.urls]
+Homepage = "https://github.com/Erick-wilding675/Geo-BTC"
+Repository = "https://github.com/Erick-wilding675/Geo-BTC"
+Issues = "https://github.com/Erick-wilding675/Geo-BTC/issues"
+
+[project.scripts]
+geo-btc-pipeline = "scripts.run_pipeline:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "configs*", "scripts*"]
+exclude = ["tests*", "notebooks*"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = "-ra -q --strict-markers"
+pythonpath = ["."]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["tests/*", "scripts/*", "notebooks/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

@@ -1,0 +1,33 @@
+{
+  "title": "Geo-BTC: Bitcoin Price Forecasting with LSTM and Residual Analysis for Geopolitical Risk Inference",
+  "description": "Reproducible research pipeline combining a univariate LSTM forecast of daily BTC/USD closing prices (Bitstamp exchange, 2012-2014 training) with a two-sigma residual-analysis procedure that flags candidate dates in 2015 for downstream qualitative investigation of geopolitically significant events.",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Cardoso Mendes, Erick",
+      "affiliation": "Independent Researcher"
+    }
+  ],
+  "keywords": [
+    "bitcoin",
+    "LSTM",
+    "deep learning",
+    "time-series forecasting",
+    "residual analysis",
+    "geopolitical risk",
+    "cryptocurrency",
+    "reproducible research"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Erick-wilding675/Geo-BTC",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ],
+  "communities": [
+    { "identifier": "open-science" }
+  ]
+}

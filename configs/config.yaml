@@ -1,0 +1,61 @@
+# ==============================================================================
+#  Geo-BTC — Default experiment configuration
+# ==============================================================================
+#  All scripts in scripts/ accept `--config path/to/this.yaml` and will apply
+#  these values. Override on the CLI with, e.g., `--look-back 60`.
+# ==============================================================================
+
+# ── Reproducibility ───────────────────────────────────────────────────────────
+seed: 42
+
+# ── Data ──────────────────────────────────────────────────────────────────────
+data:
+  target_col: Close
+  split:
+    train_end:   "2014-09-30"
+    test_start:  "2014-10-01"
+    test_end:    "2014-12-31"
+    val_start:   "2015-01-01"
+    val_end:     "2015-12-31"
+
+# ── Feature engineering ───────────────────────────────────────────────────────
+features:
+  look_back: 90          # 60 = notebook default; 90 = best from grid search
+  scaler_range: [0.0, 1.0]
+
+# ── Training ──────────────────────────────────────────────────────────────────
+training:
+  baseline:
+    epochs: 200
+    batch_size: 32
+    early_stopping_patience: 20
+  tuned:
+    epochs: 150
+    batch_size: 64
+    early_stopping_patience: 20
+    learning_rate: 0.001
+  final:
+    epochs: 50
+    batch_size: 32
+    units: 100
+
+# ── Grid search ───────────────────────────────────────────────────────────────
+grid_search:
+  look_back_options: [60, 90]
+  neurons_options:   [50, 100]
+  epochs: 20
+  batch_size: 32
+  patience: 5
+
+# ── Residual analysis ─────────────────────────────────────────────────────────
+analysis:
+  sigma_multiplier: 2.0
+  investigation_window_pre:  3
+  investigation_window_post: 7
+  top_n_errors: 10
+
+# ── Output directories (auto-created) ─────────────────────────────────────────
+outputs:
+  models_dir:   models
+  results_dir:  results
+  figures_dir:  reports/figures
