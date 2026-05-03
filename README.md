@@ -188,7 +188,7 @@ If you use this code or the associated datasets, please cite the paper
 
 ```bibtex
 @software{cardosomendes_geobtc_2026,
-  author       = {Cardoso Mendes, Erick and Aguiar, Letícia Almeida and Rocha Bezerra, Eduardo Fernandes dos Santos},
+  author       = {Cardoso Mendes, Erick and Bezerra, Letícia Almeida Aguiar and Rocha, Eduardo Fernandes dos Santos},
   title        = {{Forecasting Bitcoin Prices and Analyzing Geopolitical Risks: A Residual Analysis Approach using LSTM}},
   year         = {2026},
   version      = {1.0.0},
