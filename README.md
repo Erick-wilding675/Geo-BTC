@@ -11,8 +11,8 @@
 <!-- ![DOI](https://zenodo.org/badge/DOI/TBD.svg) -->
 
 This repository is the companion code for the peer-reviewed article
-*“Geo-BTC: Bitcoin price forecasting with LSTM and residual analysis
-for geopolitical risk inference”* (Cardoso Mendes, 2026).
+*“Forecasting Bitcoin Prices and Analyzing Geopolitical Risks: 
+A Residual Analysis Approach using LSTM”* (Cardoso Mendes, 2026).
 
 It contains everything needed to reproduce the paper end-to-end: data,
 notebooks, a modular Python package, unit tests, continuous integration
