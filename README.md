@@ -12,7 +12,7 @@
 
 This repository is the companion code for the peer-reviewed article
 *“Forecasting Bitcoin Prices and Analyzing Geopolitical Risks: 
-A Residual Analysis Approach using LSTM”* (Cardoso Mendes, 2026).
+A Residual Analysis Approach using LSTM”* (Mendes et. al, 2026).
 
 It contains everything needed to reproduce the paper end-to-end: data,
 notebooks, a modular Python package, unit tests, continuous integration
