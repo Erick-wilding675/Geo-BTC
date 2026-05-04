@@ -3,11 +3,10 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Union
 
 import pandas as pd
 
-PathLike = Union[str, Path]
+PathLike = str | Path
 
 
 def load_bitcoin_data(csv_path: PathLike) -> pd.DataFrame:

@@ -51,7 +51,7 @@ def build_inference_figure(
             y=res["Actual_Price"],
             mode="lines",
             name="Real Price (BTC/USD)",
-            line=dict(color="black", width=1.6),
+            line={"color": "black", "width": 1.6},
             hovertemplate="<b>%{x|%b %d, %Y}</b><br>Real: $%{y:.2f}<extra></extra>",
         )
     )
@@ -61,7 +61,7 @@ def build_inference_figure(
             y=res["Predicted_Price"],
             mode="lines",
             name="Predicted Price (LSTM)",
-            line=dict(color="#00CC96", width=1.4, dash="dash"),
+            line={"color": "#00CC96", "width": 1.4, "dash": "dash"},
             hovertemplate="<b>%{x|%b %d, %Y}</b><br>Predicted: $%{y:.2f}<extra></extra>",
         )
     )
@@ -87,12 +87,12 @@ def build_inference_figure(
                 y=flag_y,
                 mode="markers",
                 name=f"Outlier flag (Error > ${threshold_usd:.0f})",
-                marker=dict(
-                    symbol="triangle-down",
-                    size=12,
-                    color="#EF553B",
-                    line=dict(width=1, color="black"),
-                ),
+                marker={
+                    "symbol": "triangle-down",
+                    "size": 12,
+                    "color": "#EF553B",
+                    "line": {"width": 1, "color": "black"},
+                },
                 text=flag_text,
                 hovertemplate="%{text}<extra></extra>",
             )
@@ -109,7 +109,7 @@ def build_inference_figure(
                 arrowhead=2,
                 ax=0,
                 ay=ay,
-                font=dict(size=10, color="#1F4E79"),
+                font={"size": 10, "color": "#1F4E79"},
                 bgcolor="rgba(255,255,255,0.85)",
                 bordercolor="#EF553B",
                 borderwidth=1,
@@ -122,8 +122,8 @@ def build_inference_figure(
         yaxis_title="Price (USD)",
         hovermode="x unified",
         template="plotly_white",
-        legend=dict(orientation="h", y=1.07, x=0.5, xanchor="center"),
-        margin=dict(l=60, r=40, t=80, b=60),
+        legend={"orientation": "h", "y": 1.07, "x": 0.5, "xanchor": "center"},
+        margin={"l": 60, "r": 40, "t": 80, "b": 60},
     )
     return fig
 
