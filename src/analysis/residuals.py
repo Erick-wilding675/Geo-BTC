@@ -37,9 +37,7 @@ def build_residual_dataframe(
 
     if len(dates) != len(y_actual_flat) or len(dates) != len(y_pred_flat):
         raise ValueError(
-            "Length mismatch: dates={}, y_actual={}, y_predicted={}.".format(
-                len(dates), len(y_actual_flat), len(y_pred_flat)
-            )
+            f"Length mismatch: dates={len(dates)}, y_actual={len(y_actual_flat)}, y_predicted={len(y_pred_flat)}."
         )
 
     abs_error = np.abs(y_actual_flat - y_pred_flat)

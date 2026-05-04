@@ -24,8 +24,8 @@ sys.path.insert(0, str(ROOT))
 from configs.paths import (  # noqa: E402
     DEFAULT_CONFIG_PATH,
     FIGURES_DIR,
-    INFERENCE_TABLE_CSV_PATH,
     INFERENCE_PLOT_HTML_PATH,
+    INFERENCE_TABLE_CSV_PATH,
     RESIDUALS_CSV_PATH,
 )
 from src.inference import compute_explaining_ratio  # noqa: E402

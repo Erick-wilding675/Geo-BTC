@@ -19,10 +19,10 @@ sys.path.insert(0, str(ROOT))
 
 from configs.paths import (  # noqa: E402
     DEFAULT_CONFIG_PATH,
+    INFERENCE_TABLE_CSV_PATH,
     INVESTIGATION_CSV_PATH,
     QUALITATIVE_CSV_PATH,
     RESULTS_DIR,
-    INFERENCE_TABLE_CSV_PATH,
 )
 from src.inference import build_inference_table  # noqa: E402
 from src.utils import get_logger, load_config, set_global_seed  # noqa: E402
