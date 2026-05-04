@@ -5,12 +5,10 @@
 #      make help          List available targets
 #      make install       Install package + dependencies (editable)
 #      make env           Create conda environment
-#      make data          Reproduce the processed dataset
-#      make train         Train the final model (full pipeline)
+#      make pipeline      Reproduce the whole paper (Phase 1 + Phase 2)
 #      make test          Run unit tests
 #      make lint          Run ruff lint checks
 #      make format        Apply ruff formatting
-#      make pipeline      Reproduce the whole paper (data → train → analysis)
 #      make clean         Remove caches, compiled artefacts, __pycache__
 # ==============================================================================
 
@@ -18,8 +16,9 @@ SHELL := /bin/bash
 PYTHON ?= python3
 CONFIG ?= configs/config.yaml
 
-.PHONY: help install env data preprocess train-baseline train-tuned grid-search \
-        train-final residuals pipeline test lint format clean notebook
+.PHONY: help install env preprocess train-baseline train-tuned grid-search \
+        train-final residuals merge er plot phase2 pipeline test lint format \
+        clean notebook
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -32,6 +31,7 @@ install: ## Install package in editable mode + dev dependencies
 env: ## Create conda environment from environment.yml
 	conda env create -f environment.yml
 
+# ── Phase 1: quantitative ─────────────────────────────────────────────────────
 preprocess: ## Generate the processed CSV from raw
 	$(PYTHON) scripts/run_preprocessing.py --config $(CONFIG)
 
@@ -50,9 +50,23 @@ train-final: ## Train final model on merged 2012-2014 data
 residuals: ## Run 2015 inference + outlier detection
 	$(PYTHON) scripts/run_residual_analysis.py --config $(CONFIG)
 
+# ── Phase 2: causal inference ─────────────────────────────────────────────────
+merge: ## Merge LSTM outliers with the qualitative event database
+	$(PYTHON) scripts/run_inference_merge.py --config $(CONFIG)
+
+er: ## Compute the Explaining Ratio (ER) and per-category table
+	$(PYTHON) scripts/run_explaining_ratio.py --config $(CONFIG)
+
+plot: ## Build the Plotly inference storyboard
+	$(PYTHON) scripts/run_inference_plot.py --config $(CONFIG)
+
+phase2: merge er plot ## Reproduce Phase 2 only
+
+# ── Full reproduction ─────────────────────────────────────────────────────────
 pipeline: ## Reproduce the entire paper end-to-end
 	$(PYTHON) scripts/run_pipeline.py --config $(CONFIG)
 
+# ── Quality gates ─────────────────────────────────────────────────────────────
 test: ## Run the test suite with coverage
 	$(PYTHON) -m pytest --cov=src --cov-report=term-missing
 

@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software or dataset, please cite the work using the metadata below."
-title: "Geo-BTC: Bitcoin Price Forecasting with LSTM and Residual Analysis for Geopolitical Risk Inference"
+title: "Forecasting Bitcoin Prices and Analyzing Geopolitical Risks: A Residual Analysis Approach using LSTM"
 type: software
 version: 1.0.0
 date-released: 2026-04-21
@@ -8,12 +8,16 @@ license: MIT
 repository-code: "https://github.com/Erick-wilding675/Geo-BTC"
 url: "https://github.com/Erick-wilding675/Geo-BTC"
 abstract: >
-  Geo-BTC is a reproducible research pipeline that combines univariate LSTM
-  forecasting of daily Bitcoin (BTC/USD) closing prices on the Bitstamp
-  exchange with a two-sigma residual-analysis procedure. Dates at which model
-  prediction error is anomalously large are treated as empirical candidates
-  for downstream qualitative investigation of geopolitically significant
-  events in 2015.
+  Geo-BTC is a reproducible research pipeline that combines univariate
+  LSTM forecasting of daily Bitcoin (BTC/USD) closing prices on the
+  Bitstamp exchange with a two-sigma residual-analysis procedure.
+  Dates at which model prediction error is anomalously large are
+  treated as empirical candidates for downstream qualitative
+  investigation of geopolitically significant events. The companion
+  Phase 2 module merges the LSTM outliers with a curated qualitative
+  database of macro / institutional events and computes the
+  Explaining Ratio (ER) — the fraction of LSTM outliers that admit a
+  contemporaneous geopolitical or institutional explanation.
 keywords:
   - bitcoin
   - LSTM
@@ -22,17 +26,26 @@ keywords:
   - residual analysis
   - geopolitical risk
   - cryptocurrency
+  - causal inference
 authors:
   - family-names: "Cardoso Mendes"
     given-names: "Erick"
     email: "cmendeserick@gmail.com"
     orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: replace with real ORCID
+  - family-names: "Bezerra"
+    given-names: "Letícia Almeida Aguiar"
+  - family-names: "Rocha"
+    given-names: "Eduardo Fernandes dos Santos"
 preferred-citation:
   type: article
-  title: "Geo-BTC: Bitcoin Price Forecasting with LSTM and Residual Analysis for Geopolitical Risk Inference"
+  title: "Forecasting Bitcoin Prices and Analyzing Geopolitical Risks: A Residual Analysis Approach using LSTM"
   authors:
     - family-names: "Cardoso Mendes"
       given-names: "Erick"
+    - family-names: "Bezerra"
+      given-names: "Letícia Almeida Aguiar"
+    - family-names: "Rocha"
+      given-names: "Eduardo Fernandes dos Santos"
   year: 2026
   journal: "TBD"  # TODO: replace with journal / venue upon acceptance
   doi: "TBD"     # TODO: replace with DOI upon publication

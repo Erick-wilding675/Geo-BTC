@@ -5,11 +5,16 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "geo-btc"
 version = "1.0.0"
-description = "Bitcoin price forecasting using LSTM and residual analysis for geopolitical risk inference"
+description = "Forecasting Bitcoin Prices and Analyzing Geopolitical Risks: A Residual Analysis Approach using LSTM"
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
 license = { file = "LICENSE" }
 authors = [
+    { name = "Erick Cardoso Mendes", email = "cmendeserick@gmail.com" },
+    { name = "Letícia Almeida Aguiar Bezerra" },
+    { name = "Eduardo Fernandes dos Santos Rocha" },
+]
+maintainers = [
     { name = "Erick Cardoso Mendes", email = "cmendeserick@gmail.com" },
 ]
 keywords = [
@@ -20,6 +25,7 @@ keywords = [
     "cryptocurrency",
     "residual-analysis",
     "deep-learning",
+    "causal-inference",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -41,6 +47,8 @@ dependencies = [
     "keras==3.4.1",
     "matplotlib==3.9.2",
     "seaborn==0.13.2",
+    "plotly==5.24.1",
+    "openpyxl==3.1.5",
     "pyyaml==6.0.2",
     "python-dotenv==1.0.1",
 ]
@@ -56,6 +64,7 @@ notebook = [
     "jupyterlab==4.2.5",
     "ipykernel==6.29.5",
     "yfinance==0.2.43",
+    "kaleido==0.2.1",
 ]
 
 [project.urls]

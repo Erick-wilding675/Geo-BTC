@@ -50,6 +50,16 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 pytest-cache-files-*/
+
+# Geo-BTC: dry-run artefacts
+results/_dryrun_*
+
+# Pandoc / reportlab intermediate artefacts in reports/
+reports/html2pdf*
+reports/TR-*.html
+
+# Empty placeholder created during initial scaffolding
+data/.gitkeep_dir
 cover/
 
 # Translations

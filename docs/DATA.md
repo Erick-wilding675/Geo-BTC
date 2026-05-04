@@ -6,7 +6,8 @@
 | ---- | -------- | ------ |
 | `bitstamp_cleaned.csv` | `data/raw/` | Bitstamp exchange tick data, cleaned (duplicate rows removed, DateTime coerced) |
 | `bitstamp_daily_final.csv` | `data/processed/` | Resampled to **daily** OHLCV with `DateTime` index |
-| `wikipedia_edits.csv` | `data/external/` | Daily Wikipedia edit counts on the `Bitcoin` article, with sentiment and negative-sentiment scores — used as a contextual signal in Phase 2 |
+| `wikipedia_edits.csv` | `data/external/` | Daily Wikipedia edit counts on the `Bitcoin` article, with sentiment and negative-sentiment scores |
+| `qualitative_analysis.csv` / `qualitative_analysis.xlsx` | `data/external/` | Curated 2015 macro / institutional event database — input to Phase 2 |
 
 The raw Bitstamp file is an intermediate snapshot derived from
 the publicly available Kaggle dataset
@@ -43,6 +44,23 @@ redistributed; the cleaned CSV is kept under Git LFS.
 | `sentiment` | float | Mean sentiment polarity of edits |
 | `neg_sentiment` | float | Negative-sentiment share |
 
+### `data/external/qualitative_analysis.csv`
+
+Free-text English database of the eight 2015 event windows that drive
+the residual outliers. Eight rows × six columns.
+
+| Column | Type | Description |
+| ------ | ---- | ----------- |
+| `Date` | string | Free-form bilingual period string (e.g. `"15-25 Mar 2015"` or `"23 Nov - 03 Dec 2015"`) — parsed into a closed `(start, end)` interval by `src.inference.merge.parse_period_string` |
+| `Fluctuation` | string | `Up` or `Down` — direction of the price move during the window |
+| `Category` | string | One of: `Ecosystem Vulnerability`, `Global Macroeconomic Shock`, `Institutional Interest`, `Chinese Market Demand Surge`, `Global Expansion`, `Technical Consolidation`, `Speculative Re-entry`, `Parabolic Move — FOMO` |
+| `Event (Macro)` | string | One- or two-sentence description of the macro narrative |
+| `Breakdown (Micro)` | string | Detailed proximate market mechanism |
+| `Price Movement` | string | Open / close prices and percentage move |
+
+A formatted Excel companion (`qualitative_analysis.xlsx`) carries the
+same data with frozen header and column widths for human reading.
+
 ## Regenerating the processed CSV
 
 The daily CSV was produced once, offline, by resampling the Bitstamp
@@ -73,4 +91,6 @@ daily.to_csv("data/processed/bitstamp_daily_final.csv", index=False)
 ## Licence
 
 The Bitstamp tick data is released under the CC0 public-domain
-dedication by its original Kaggle publisher.
+dedication by its original Kaggle publisher. The qualitative
+analysis database is original to this project and is released under
+MIT alongside the rest of the repository.

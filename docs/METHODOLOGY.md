@@ -12,12 +12,15 @@ significant events?
 
 The hypothesis is operationalised in two phases:
 
-1. **Quantitative phase (this repository).** Fit an LSTM on 2012-2014
-   BTC/USD Bitstamp closing prices, perform out-of-sample inference for
-   all 2015 trading days, and flag days whose residuals lie outside a
-   ±2σ band.
-2. **Qualitative phase.** For each flagged day, expand an asymmetric
-   ``[-3, +7]``-day window and investigate news of that period.
+1. **Quantitative phase.** Fit an LSTM on 2012-2014 BTC/USD Bitstamp
+   closing prices, perform out-of-sample inference for all 2015 trading
+   days, and flag days whose residuals lie outside a ±2σ band.
+2. **Qualitative + causal-inference phase.** For each flagged day,
+   expand an asymmetric ``[-3, +7]``-day window, merge with a curated
+   qualitative event database (`data/external/qualitative_analysis.csv`)
+   and compute the **Explaining Ratio (ER)** — the share of LSTM
+   outliers explained by a contemporaneous geopolitical or
+   institutional event.
 
 ## Temporal partitioning
 
@@ -78,6 +81,37 @@ Each outlier day ``t`` is expanded into an asymmetric window
 ``[t − 3, t + 7]``. The longer post-event tail accounts for the typical
 lag between a geopolitical event and its observable market effect.
 
+## Phase 2 — causal inference
+
+Phase 2 lives under [`src/inference/`](../src/inference/) and is
+documented in detail in [`reports/TR-04.md`](../reports/TR-04.md).
+The three building blocks are:
+
+1. **Period parser** (`src/inference/merge.parse_period_string`) — a
+   bilingual (PT-BR / EN) parser that converts free-form qualitative
+   strings such as `"15-25 Mar 2015"` or `"23 Nov - 03 Dec 2015"` into
+   closed `(start, end)` `pandas.Timestamp` intervals.
+2. **Containment-based merge** (`src/inference/merge.build_inference_table`)
+   — each LSTM outlier `Event_Date` is joined to the qualitative
+   window that contains it; ties broken by minimum distance to the
+   window midpoint. Outliers without a matching window keep
+   `Category = NaN` and contribute to the un-explained residual share.
+3. **Explaining Ratio** (`src/inference/metrics`):
+
+   ER = |E| / |T| × 100
+
+   where `T` is the set of outliers above the **Rule of 20**
+   (`Abs_Error > 20 USD` by default) and `E ⊆ T` the subset whose
+   `Category` is non-null. The same module emits a per-category
+   summary with `Frequence`, `Mean Absolute Error (MAE)` and
+   `Explaining Ratio (ER)` columns; summing the ER column reproduces
+   the global ratio.
+
+The Phase-2 storyboard is rendered with Plotly
+(`src/inference/plot`) as an interactive HTML file. A static PNG
+companion is generated automatically when the optional `kaleido`
+extra is installed.
+
 ## Metrics
 
 For every evaluation window we report:
@@ -85,8 +119,10 @@ For every evaluation window we report:
 - **MAE** — mean absolute error in USD.
 - **RMSE** — root mean squared error in USD.
 - **MAE (% of mean price)** — scale-normalised MAE.
+- **ER** — Explaining Ratio (Phase 2).
 
-See :class:`src.evaluation.metrics.RegressionMetrics`.
+See :class:`src.evaluation.metrics.RegressionMetrics` and
+:class:`src.inference.metrics.ExplainingRatio`.
 
 ## Reproducibility
 
