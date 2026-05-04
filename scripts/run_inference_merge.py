@@ -54,7 +54,9 @@ def main() -> int:
     if not args.qualitative.exists():
         raise FileNotFoundError(f"Qualitative CSV not found at {args.qualitative}")
 
-    invest_df = pd.read_csv(args.investigation, parse_dates=["Event_Date", "Start_Date", "End_Date"])
+    invest_df = pd.read_csv(
+        args.investigation, parse_dates=["Event_Date", "Start_Date", "End_Date"]
+    )
     qual_df = pd.read_csv(args.qualitative)
 
     logger.info(

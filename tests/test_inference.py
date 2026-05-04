@@ -117,9 +117,7 @@ class TestBuildInferenceTable:
         mar = out[out["Event_Date"] == pd.Timestamp("2015-03-19")].iloc[0]
         assert mar["Category"] == "Ecosystem Vulnerability"
 
-    def test_outlier_outside_any_window_has_null_category(
-        self, qualitative_df, investigation_df
-    ):
+    def test_outlier_outside_any_window_has_null_category(self, qualitative_df, investigation_df):
         out = build_inference_table(investigation_df, qualitative_df)
         june = out[out["Event_Date"] == pd.Timestamp("2015-06-15")].iloc[0]
         assert pd.isna(june["Category"])

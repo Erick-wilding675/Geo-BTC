@@ -40,8 +40,7 @@ def load_bitcoin_data(csv_path: PathLike) -> pd.DataFrame:
 
     if "DateTime" not in df.columns:
         raise KeyError(
-            "Expected column 'DateTime' in the processed CSV. "
-            f"Columns found: {list(df.columns)}"
+            f"Expected column 'DateTime' in the processed CSV. Columns found: {list(df.columns)}"
         )
 
     df["DateTime"] = pd.to_datetime(df["DateTime"])

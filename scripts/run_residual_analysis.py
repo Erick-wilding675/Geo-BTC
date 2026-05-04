@@ -112,9 +112,7 @@ def main() -> int:
     )
 
     top_errors = (
-        flagged_df.sort_values(by="Abs_Error", ascending=False)
-        .head(top_n)
-        .reset_index(drop=True)
+        flagged_df.sort_values(by="Abs_Error", ascending=False).head(top_n).reset_index(drop=True)
     )
     logger.info(
         "TOP-%d dates for geopolitical investigation:\n%s",

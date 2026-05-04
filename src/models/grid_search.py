@@ -103,9 +103,5 @@ def grid_search_lstm(
                 GridResult(config=f"Win{lb}_Neur{neurons}", look_back=lb, neurons=neurons, mae=mae)
             )
 
-    df = (
-        pd.DataFrame([r.__dict__ for r in results])
-        .sort_values(by="mae")
-        .reset_index(drop=True)
-    )
+    df = pd.DataFrame([r.__dict__ for r in results]).sort_values(by="mae").reset_index(drop=True)
     return df

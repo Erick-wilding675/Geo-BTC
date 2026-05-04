@@ -21,10 +21,27 @@ import pandas as pd
 # ── Bilingual month dictionary (PT-BR + EN) ───────────────────────────────────
 MONTHS: dict[str, int] = {
     # English
-    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
-    "jul": 7, "aug": 8, "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12,
+    "jan": 1,
+    "feb": 2,
+    "mar": 3,
+    "apr": 4,
+    "may": 5,
+    "jun": 6,
+    "jul": 7,
+    "aug": 8,
+    "sep": 9,
+    "sept": 9,
+    "oct": 10,
+    "nov": 11,
+    "dec": 12,
     # Portuguese
-    "fev": 2, "abr": 4, "mai": 5, "ago": 8, "set": 9, "out": 10, "dez": 12,
+    "fev": 2,
+    "abr": 4,
+    "mai": 5,
+    "ago": 8,
+    "set": 9,
+    "out": 10,
+    "dez": 12,
 }
 
 # Accept "-", "–", "—", "to" as range separator
@@ -199,8 +216,4 @@ def build_inference_table(
             }
         )
 
-    return (
-        pd.DataFrame(rows)
-        .sort_values("Event_Date")
-        .reset_index(drop=True)
-    )
+    return pd.DataFrame(rows).sort_values("Event_Date").reset_index(drop=True)
